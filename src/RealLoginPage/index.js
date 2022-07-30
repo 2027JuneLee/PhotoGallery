@@ -6,6 +6,7 @@ const Wrapper = styled.div`
     display: flex;
     height: 100vh;
     color: black;
+    font-family: Gill Sans, sans-serif;
 `
 
 const Left = styled.div`
@@ -87,7 +88,7 @@ const PutUserInfo = (e) => {
     console.log(user.value)
 }
 
-function SignUp(){
+const SignUp =() =>{
     navigate("/signup")
 }
 
@@ -115,7 +116,7 @@ return (
             </Input>
             <br></br>
             <InputButton onClick={navigate2Home}>log in</InputButton>
-            <InputButton onClick={SignUp}>SIGN UP!!!!!!</InputButton>
+            <InputButton onClick={SignUp}>SIGN UP</InputButton>
         </Left> 
         <Right> <WallyImage src={WALLYFAMILY}></WallyImage></Right>
     </Wrapper>
