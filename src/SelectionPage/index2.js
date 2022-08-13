@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Img1 from "./raccoon-1.jpg";
 import Img2 from "./raccoon-2.png";
-
+import Img3 from "./raccoon-3.png"
 import Img4 from "./raccoon-4.png";
 import Img5 from "./raccoon-5.png";
 
@@ -64,7 +64,7 @@ function MainPage() {
     first: 0,
     last: 4,
   });
-  const images = [Img1, Img2, Img4, Img5];
+  const images = [Img1, Img2, Img3, Img4, Img5];
 
   const nextPage = (action) => {
     if (action == "prev" && RacoonIndex.first == 4) {
