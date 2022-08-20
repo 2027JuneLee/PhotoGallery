@@ -1,0 +1,95 @@
+import styled from "styled-components";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Img1 from "./background-1.jpg";
+import Img2 from "./background-2.jpg";
+import Img3 from "./background-3.jpg"
+import Img4 from "./background-4.jpg";
+import Img5 from "./background-5.jpg";
+
+const Wrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  // text-align: center;
+  font-family: Arial Narrow, sans-serif;
+  opacity: 1;
+  font-family: "Dancing Script", cursive;
+  background-color : #ff0000;
+`;
+
+const Input = styled.input`
+  border-radius: 5px;
+  background: black;
+  font-size: 14px;
+  border: none;
+  color: white;
+  width: 500px;
+  height: 25px;
+  padding: 8px;
+`;
+const SliderWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+const SliderButton = styled.button`
+  font-size: 40px;
+  color: black;
+  font-weight: 700;
+  border: none;
+`;
+
+const Block = styled.img`
+  background-color: yellow;
+  width: 250px;
+  height: 250px;
+  margin-right: 20px;
+  margin-left: 20px;
+`;
+function SelectBackground() {
+  const navigate = useNavigate();
+  const [RacoonIndex, setRacoonIndex] = useState({
+    first: 0,
+    last: 4,
+  });
+  const images = [Img1, Img2, Img3, Img4, Img5];
+
+  const nextPage = (action) => {
+    if (action == "prev" && RacoonIndex.first == 4) {
+      setRacoonIndex({
+        first: 0,
+        last: 4,
+      });
+    }
+    if (action == "next" && RacoonIndex.first == 0) {
+      setRacoonIndex({
+        first: 4,
+        last: 8,
+      });
+    }
+  };
+
+  return (
+    <Wrapper>
+      <h2>SELECT YOUR CHARACTER: </h2>
+      <br></br>
+      <SliderWrapper>
+        <SliderButton onClick={() => nextPage("prev")}>
+          <span>&#8592;</span>
+        </SliderButton>
+        {images.slice(RacoonIndex.first, RacoonIndex.last).map((image) => (
+          <Block src={image} />
+        ))}
+
+        <SliderButton onClick={() => nextPage("next")}>
+          <span>&#8594;</span>
+        </SliderButton>
+      </SliderWrapper>
+    </Wrapper>
+  );
+}
+export default SelectBackground;
