@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 
 const Container = styled.div`
 
-height: 100vh;
+height: 100%;
 background-color: black
 // display: flex;
 `;

@@ -17,9 +17,8 @@ const Wrapper = styled.div`
   // text-align: center;
   font-family: Arial Narrow, sans-serif;
   background-image: url({WALLYWORLD});
-  opacity: 0.5;
   font-family: "Dancing Script", cursive;
-  opacity: 0.5;
+  opacity: 0.8;
   background: repeating-linear-gradient(
     45deg,
     #ff0000,
@@ -58,7 +57,30 @@ const Block = styled.img`
   margin-right: 20px;
   margin-left: 20px;
 `;
+
+const TON = styled.button`
+background-color: #b8860b;
+border-radius: 5px;
+border: dotted 0.5px;
+width: 150px;
+height: 30px;
+font-size:18px;
+`;
 function MainPage() {
+  function MOVE2(){
+    if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
+        navigate("/select-3 ")
+    }else{
+        alert("TASK ABORTED")
+    }
+}
+function MOVEBACK(){
+  if (window.confirm('GO BACK TO SELECTION 1?')){
+      navigate("/select-1")
+  }else{
+      alert("TASK ABORTED")
+  }
+}
   const navigate = useNavigate();
   const [RacoonIndex, setRacoonIndex] = useState({
     first: 0,
@@ -90,13 +112,15 @@ function MainPage() {
           <span>&#8592;</span>
         </SliderButton>
         {images.slice(RacoonIndex.first, RacoonIndex.last).map((image) => (
-          <Block src={image} />
+          <Block onClick={MOVE2} src={image} />
         ))}
 
         <SliderButton onClick={() => nextPage("next")}>
           <span>&#8594;</span>
         </SliderButton>
       </SliderWrapper>
+      <br></br>
+      <TON onClick={MOVEBACK}>GO BACK</TON>
     </Wrapper>
   );
 }

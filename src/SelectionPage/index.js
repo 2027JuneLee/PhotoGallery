@@ -20,9 +20,8 @@ const Wrapper = styled.div`
     // text-align: center;
     font-family: Arial Narrow, sans-serif;
     background-image: url({WALLYWORLD});
-    opacity: 0.5;
     font-family: 'Dancing Script', cursive;
-    opacity: 0.5;
+    opacity: 0.8;
     background: 
     repeating-linear-gradient(
         
@@ -63,10 +62,16 @@ width: 250px;
 height: 250px;
 margin-right: 20px;
 margin-left: 20px;
-
 `;
 function MainPage() {
     const navigate = useNavigate()
+    function MOVE2(){
+        if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
+            navigate("/select-2")
+        }else{
+            alert("TASK ABORTED")
+        }
+    }
     const [WallyIndex, setWallyIndex] = useState({
         first: 0,
         last: 4
@@ -97,7 +102,7 @@ return (
             <span>&#8592;</span>
         </SliderButton>
         {
-            images.slice(WallyIndex.first, WallyIndex.last).map((image) => (<Block src={image}/>))
+            images.slice(WallyIndex.first, WallyIndex.last).map((image) => (<Block onClick={MOVE2} src={image}/>))
         }
 
 <SliderButton onClick={() => nextPage("next")}> 

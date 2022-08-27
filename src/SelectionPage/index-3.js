@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   align-items: center;
   // text-align: center;
   font-family: Arial Narrow, sans-serif;
-  opacity: 1;
+  opacity: 0.9;
   font-family: "Dancing Script", cursive;
   background-color : #ff0000;
 `;
@@ -50,7 +50,23 @@ const Block = styled.img`
   margin-right: 20px;
   margin-left: 20px;
 `;
+
+const TON = styled.button`
+background-color: #b8860b;
+border-radius: 5px;
+border: dotted 0.5px;
+width: 150px;
+height: 30px;
+font-size:18px;
+`;
 function SelectBackground() {
+  function MOVEBACK(){
+    if (window.confirm('GO BACK TO SELECTION 2?')){
+        navigate("/select-2")
+    }else{
+        alert("TASK ABORTED")
+    }
+}
   const navigate = useNavigate();
   const [RacoonIndex, setRacoonIndex] = useState({
     first: 0,
@@ -89,6 +105,8 @@ function SelectBackground() {
           <span>&#8594;</span>
         </SliderButton>
       </SliderWrapper>
+      <br></br>
+      <TON onClick={MOVEBACK}>GO BACK</TON>
     </Wrapper>
   );
 }

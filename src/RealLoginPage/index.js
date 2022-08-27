@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import WALLYFAMILY from "./WALLYFAMILY.jpg"
 const Wrapper = styled.div`
     display: flex;
-    height: 100vh;
+    height: 100%;
     color: black;
     font-family: Gill Sans, sans-serif;
 `
@@ -32,7 +32,7 @@ const Right = styled.div`
     width: 50%;
    `
    const WallyImage = styled.img`
-   height: 100%;
+   height: 100vh;
    `;
 const WelcomeTitle = styled.h1`
     color: black;
