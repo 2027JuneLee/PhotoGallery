@@ -65,9 +65,16 @@ margin-left: 20px;
 `;
 function MainPage() {
     const navigate = useNavigate()
-    function MOVE2(){
+
+    function MOVE2(index){
+        console.log(images[index])
+        
+       
         if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
-            navigate("/select-2")
+            navigate( "/select-2",
+           {
+state:          {select1: images[index]}   
+           } )
         }else{
             alert("TASK ABORTED")
         }
@@ -102,7 +109,7 @@ return (
             <span>&#8592;</span>
         </SliderButton>
         {
-            images.slice(WallyIndex.first, WallyIndex.last).map((image) => (<Block onClick={MOVE2} src={image}/>))
+            images.slice(WallyIndex.first, WallyIndex.last).map((image, index) => (<Block onClick={() => MOVE2(index)} src={image}/>))
         }
 
 <SliderButton onClick={() => nextPage("next")}> 

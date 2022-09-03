@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Img1 from "./raccoon-1.jpg";
 import Img2 from "./raccoon-2.png";
 
@@ -60,6 +60,23 @@ const Block = styled.img`
 `;
 function MainPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  function MOVE2(index){
+    console.log(images[index])
+    
+   
+    if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
+        navigate( "/select-3",
+       {
+        state:       
+           {...location.state,
+            select2: images[index]}   
+       } )
+    }else{
+        alert("TASK ABORTED")
+    }
+}
   const [RacoonIndex, setRacoonIndex] = useState({
     first: 0,
     last: 4,
@@ -89,8 +106,8 @@ function MainPage() {
         <SliderButton onClick={() => nextPage("prev")}>
           <span>&#8592;</span>
         </SliderButton>
-        {images.slice(RacoonIndex.first, RacoonIndex.last).map((image) => (
-          <Block src={image} />
+        {images.slice(RacoonIndex.first, RacoonIndex.last).map((image, index) => (
+          <Block onClick={() => MOVE2(index)}src={image} />
         ))}
 
         <SliderButton onClick={() => nextPage("next")}>
