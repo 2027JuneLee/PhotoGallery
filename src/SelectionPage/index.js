@@ -10,6 +10,7 @@ import WATCHERS from "./WATCHERS.png"
 import WHITEBEARD from "./WHITEBEARD.png"
 import WHERE from "./WHERE.png"
 
+
 const Wrapper = styled.div`
     display: flex;
     height: 100vh;
@@ -73,7 +74,8 @@ function MainPage() {
         if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
             navigate( "/select-2",
            {
-state:          {select1: images[index]}   
+            state:       
+               {select1: images[index]}   
            } )
         }else{
             alert("TASK ABORTED")

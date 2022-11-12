@@ -76,7 +76,7 @@ function MOVE2(index){
   
  
   if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
-      navigate( "/thesupercalifragilisticexpialidocioushomepageforallofwallysfans",
+      navigate( "/main",
      {
       state:       
          {...location.state,

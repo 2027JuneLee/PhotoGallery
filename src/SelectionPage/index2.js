@@ -7,6 +7,15 @@ import Img2 from "./raccoon-2.png";
 import Img4 from "./raccoon-4.png";
 import Img5 from "./raccoon-5.png";
 
+const TON = styled.button`
+background-color: #b8860b;
+border-radius: 5px;
+border: dotted 0.5px;
+width: 150px;
+height: 30px;
+font-size:18px;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   height: 100vh;
@@ -60,8 +69,16 @@ const Block = styled.img`
 `;
 function MainPage() {
   const navigate = useNavigate();
-  const location = useLocation();
-  
+  const locationn = useLocation();
+
+  function MOVEBACK(){
+    if (window.confirm('GO BACK TO SELECTION 1?')){
+        navigate("/select-1", {state: {...locationn.state}})
+    }else{
+        alert("TASK ABORTED")
+    }
+}
+
   function MOVE2(index){
     console.log(images[index])
     
@@ -70,7 +87,7 @@ function MainPage() {
         navigate( "/select-3",
        {
         state:       
-           {...location.state,
+           {...locationn.state,
             select2: images[index]}   
        } )
     }else{
@@ -114,6 +131,8 @@ function MainPage() {
           <span>&#8594;</span>
         </SliderButton>
       </SliderWrapper>
+      <br></br>
+      <TON onClick={MOVEBACK}>GO BACK</TON>
     </Wrapper>
   );
 }

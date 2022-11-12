@@ -21,7 +21,7 @@ const Left = styled.div`
   text-align: center;
   font-weight: bold;
   background: repeating-linear-gradient(
-    45deg,
+    75deg,
     #ff0000,
     #ff0000 10px,
     #f5fffa 10px,
@@ -89,9 +89,10 @@ function RealLoginPage() {
     if (
       id === "WallyNumberOne" &&
       password ===
-        "yoquieromuchostacobellypleasedonottrytokillwallyandthisistherealloginpagebythewayandisntthissupercalifragilisticexpialidociouspleasesayyesandloverickrollsbecauseithelpedrickastleywhosnameisrichardpaulandrikastaliinarabicrisetofameafterhismusicalcareerendeddozensofyearsagoandalsogavemeandotherstheperfectsongtolisteneverydayandisatrulygoodmemeforeveryoneandialsolovecodingandilearnmultiplelanguagesincludingkoreanenglishchinesehtmlpythonjavascriptandcss"
+        "!1234"
     ) {
       alert("LOGIN SUCCESSFUL!");
+      console.log("yoquieromuchostacobellypleasedonottrytokillwallyandthisistherealloginpagebythewayandisntthissupercalifragilisticexpialidociouspleasesayyesandloverickrollsbecauseithelpedrickastleywhosnameisrichardpaulandrikastaliinarabicrisetofameafterhismusicalcareerendeddozensofyearsagoandalsogavemeandotherstheperfectsongtolisteneverydayandisatrulygoodmemeforeveryoneandialsolovecodingandilearnmultiplelanguagesincludingkoreanenglishchinesehtmlpythonjavascriptandcssohandbythewayilestentoaverypopularfamousandmiraclesongnamednevergonnagiveyouupbyrickastleyandialsolistentoabbabonnietylerandsomuchmoreartistsonyoutubemusicspotifymelondeezerandsomuchmoremusicstreamingplatforms")
       navigate("/");
       return;
     }
