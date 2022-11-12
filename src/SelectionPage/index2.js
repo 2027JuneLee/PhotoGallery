@@ -17,9 +17,8 @@ const Wrapper = styled.div`
   // text-align: center;
   font-family: Arial Narrow, sans-serif;
   background-image: url({WALLYWORLD});
-  opacity: 0.5;
   font-family: "Dancing Script", cursive;
-  opacity: 0.5;
+  opacity: 0.8;
   background: repeating-linear-gradient(
     45deg,
     #ff0000,
