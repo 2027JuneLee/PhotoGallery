@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Img1 from "./background-1.jpg";
 import Img2 from "./background-2.jpg";
 import Img3 from "./background-3.jpg"
@@ -59,15 +59,33 @@ width: 150px;
 height: 30px;
 font-size:18px;
 `;
-function SelectBackground() {
+function SelectBackground(){
+  const navigate = useNavigate()
+  const location = useLocation()
+  console.log(location.state)
   function MOVEBACK(){
     if (window.confirm('GO BACK TO SELECTION 2?')){
-        navigate("/select-2")
+        navigate("/select-2", {state: {...location.state}})
     }else{
         alert("TASK ABORTED")
     }
 }
-  const navigate = useNavigate();
+ 
+function MOVE2(index){
+  console.log(images[index])
+  
+ 
+  if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
+      navigate( "/thesupercalifragilisticexpialidocioushomepageforallofwallysfans",
+     {
+      state:       
+         {...location.state,
+          select3: images[index]}   
+     } )
+  }else{
+      alert("TASK ABORTED")
+  }
+}
   const [RacoonIndex, setRacoonIndex] = useState({
     first: 0,
     last: 4,
@@ -97,8 +115,8 @@ function SelectBackground() {
         <SliderButton onClick={() => nextPage("prev")}>
           <span>&#8592;</span>
         </SliderButton>
-        {images.slice(RacoonIndex.first, RacoonIndex.last).map((image) => (
-          <Block src={image} />
+        {images.slice(RacoonIndex.first, RacoonIndex.last).map((image, index) => (
+          <Block onClick={() => MOVE2(index)} src={image} />
         ))}
 
         <SliderButton onClick={() => nextPage("next")}>
