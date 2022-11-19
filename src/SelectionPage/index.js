@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import WALLYWORLD from "./WALLYWORLD.jpeg";
 import WALDO from "./WALDO.png";
 import ODLAW from "./ODLAW.png";
@@ -65,15 +65,23 @@ const Block = styled.img`
   margin-left: 20px;
 `;
 function MainPage() {
- const navigate = useNavigate();
-  function MOVE2() {
-    if (window.confirm("CONFIRM TO SELECT CHARACTER?")) {
-      navigate("/select-2");
-    } else {
-      alert("TASK ABORTED");
-
+  const navigate = useNavigate();
+  const locationn = useLocation();
+  function MOVE2(index){
+    console.log(images[index])
+    
+   
+    if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
+        navigate( "/select-2",
+       {
+        state:       
+           {...locationn.state,
+            select1: images[index]}   
+       } )
+    }else{
+        alert("TASK ABORTED")
     }
-  }
+}
   const [WallyIndex, setWallyIndex] = useState({
     first: 0,
     last: 4,
@@ -108,16 +116,16 @@ function MainPage() {
   
   return (
     <Wrapper>
-      <h2>SELECT YOUR CHARACTER: </h2>
+      <h2>SELECT YOUR WALLY: </h2>
       <SliderWrapper>
         <SliderButton onClick={() => nextPage("prev")}>
           <span>&#8592;</span>
         </SliderButton>
 
         {mediaQueryList.matches &&
-          images.slice(WallyIndex.first, WallyIndex.last).map((image) => (
+          images.slice(WallyIndex.first, WallyIndex.last).map((image, index) => (
             <Col md={3}>
-              <Block onClick={MOVE2} src={image} />
+              <Block onClick={MOVE2(index)} src={image} />
             </Col>
           ))}
         {!mediaQueryList.matches &&
