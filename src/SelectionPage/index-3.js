@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   align-items: center;
   // text-align: center;
   font-family: Arial Narrow, sans-serif;
-  opacity: 0.9;
+  opacity: 0.8;
   font-family: "Dancing Script", cursive;
   background-color : #ff0000;
 `;

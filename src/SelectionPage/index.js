@@ -65,30 +65,13 @@ const Block = styled.img`
   margin-left: 20px;
 `;
 function MainPage() {
-<<<<<<< HEAD
-  const navigate = useNavigate();
+ const navigate = useNavigate();
   function MOVE2() {
     if (window.confirm("CONFIRM TO SELECT CHARACTER?")) {
       navigate("/select-2");
     } else {
       alert("TASK ABORTED");
-=======
-    const navigate = useNavigate()
 
-    function MOVE2(index){
-        console.log(images[index])
-        
-       
-        if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
-            navigate( "/select-2",
-           {
-            state:       
-               {select1: images[index]}   
-           } )
-        }else{
-            alert("TASK ABORTED")
-        }
->>>>>>> 335b37c0ad2a3f30c5aa3d094b2a4cc2d59d034c
     }
   }
   const [WallyIndex, setWallyIndex] = useState({
@@ -120,7 +103,9 @@ function MainPage() {
       });
     }
   };
-  var mediaQueryList = window.matchMedia("(min-width: 729px)");
+
+  var mediaQueryList = window.matchMedia("(min-width: 729px")
+  
   return (
     <Wrapper>
       <h2>SELECT YOUR CHARACTER: </h2>
@@ -152,15 +137,9 @@ function MainPage() {
         <SliderButton onClick={() => nextPage("prev")}>
           <span>&#8592;</span>
         </SliderButton>
-<<<<<<< HEAD
-        {images.slice(WallyIndex.first, WallyIndex.last).map((image) => (
-          <Block onClick={MOVE2} src={image} />
-        ))}
-=======
         {
             images.slice(WallyIndex.first, WallyIndex.last).map((image, index) => (<Block onClick={() => MOVE2(index)} src={image}/>))
         }
->>>>>>> 335b37c0ad2a3f30c5aa3d094b2a4cc2d59d034c
 
         <SliderButton onClick={() => nextPage("next")}>
           <span>&#8594;</span>
