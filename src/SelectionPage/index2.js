@@ -8,12 +8,12 @@ import Img4 from "./raccoon-4.png";
 import Img5 from "./raccoon-5.png";
 
 const TON = styled.button`
-background-color: #b8860b;
-border-radius: 5px;
-border: dotted 0.5px;
-width: 150px;
-height: 30px;
-font-size:18px;
+  background-color: #b8860b;
+  border-radius: 5px;
+  border: dotted 0.5px;
+  width: 150px;
+  height: 30px;
+  font-size: 18px;
 `;
 
 const Wrapper = styled.div`
@@ -68,31 +68,27 @@ const Block = styled.img`
 `;
 function MainPage() {
   const navigate = useNavigate();
-  const locationn = useLocation();
+  const location = useLocation();
 
-  function MOVEBACK(){
-    if (window.confirm('GO BACK TO SELECTION 1?')){
-        navigate("/select-1", {state: {...locationn.state}})
-    }else{
-        alert("TASK ABORTED")
+  function MOVEBACK() {
+    if (window.confirm("GO BACK TO SELECTION 1?")) {
+      navigate("/select-1", { state: { ...location.state } });
+    } else {
+      alert("TASK ABORTED");
     }
-}
+  }
 
-  function MOVE2(index){
-    console.log(images[index])
-    
-   
-    if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
-        navigate( "/select-3",
-       {
-        state:       
-           {...locationn.state,
-            select2: images[index]}   
-       } )
-    }else{
-        alert("TASK ABORTED")
+  function MOVE2(index) {
+    console.log(images[index]);
+
+    if (window.confirm("CONFIRM TO SELECT CHARACTER?")) {
+      navigate("/select-3", {
+        state: { ...location.state, select2: images[index] },
+      });
+    } else {
+      alert("TASK ABORTED");
     }
-}
+  }
   const [RacoonIndex, setRacoonIndex] = useState({
     first: 0,
     last: 4,
@@ -122,9 +118,11 @@ function MainPage() {
         <SliderButton onClick={() => nextPage("prev")}>
           <span>&#8592;</span>
         </SliderButton>
-        {images.slice(RacoonIndex.first, RacoonIndex.last).map((image, index) => (
-          <Block onClick={() => MOVE2(index)}src={image} />
-        ))}
+        {images
+          .slice(RacoonIndex.first, RacoonIndex.last)
+          .map((image, index) => (
+            <Block onClick={() => MOVE2(index)} src={image} />
+          ))}
 
         <SliderButton onClick={() => nextPage("next")}>
           <span>&#8594;</span>

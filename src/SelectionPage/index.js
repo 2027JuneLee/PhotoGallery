@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import WALLYWORLD from "./WALLYWORLD.jpeg";
 import WALDO from "./WALDO.png";
 import ODLAW from "./ODLAW.png";
@@ -65,9 +65,12 @@ const Block = styled.img`
 `;
 function MainPage() {
   const navigate = useNavigate();
-  function MOVE2() {
+  const location = useLocation();
+  function MOVE2(index) {
     if (window.confirm("CONFIRM TO SELECT CHARACTER?")) {
-      navigate("/select-2");
+      navigate("/select-2", {
+        state: { ...location.state, select1: images[index] },
+      });
     } else {
       alert("TASK ABORTED");
     }
@@ -111,15 +114,17 @@ function MainPage() {
         </SliderButton>
 
         {mediaQueryList.matches &&
-          images.slice(WallyIndex.first, WallyIndex.last).map((image) => (
-            <Col md={3}>
-              <Block onClick={MOVE2} src={image} />
-            </Col>
-          ))}
+          images
+            .slice(WallyIndex.first, WallyIndex.last)
+            .map((image, index) => (
+              <Col md={3}>
+                <Block onClick={() => MOVE2(index)} src={image} />
+              </Col>
+            ))}
         {!mediaQueryList.matches &&
-          images.slice(WallyIndex.first, 1).map((image) => (
+          images.slice(WallyIndex.first, 1).map((image, index) => (
             <Col md={3}>
-              <Block onClick={MOVE2} src={image} />
+              <Block onClick={() => MOVE2(index)} src={image} />
             </Col>
           ))}
 
@@ -127,26 +132,6 @@ function MainPage() {
           <span>&#8594;</span>
         </SliderButton>
       </SliderWrapper>
-      {/* 
-      <br></br>
-      <SliderWrapper>
-        <SliderButton onClick={() => nextPage("prev")}>
-          <span>&#8592;</span>
-        </SliderButton>
-<<<<<<< HEAD
-        {images.slice(WallyIndex.first, WallyIndex.last).map((image) => (
-          <Block onClick={MOVE2} src={image} />
-        ))}
-=======
-        {
-            images.slice(WallyIndex.first, WallyIndex.last).map((image, index) => (<Block onClick={() => MOVE2(index)} src={image}/>))
-        }
->>>>>>> 335b37c0ad2a3f30c5aa3d094b2a4cc2d59d034c
-
-        <SliderButton onClick={() => nextPage("next")}>
-          <span>&#8594;</span>
-        </SliderButton>
-      </SliderWrapper> */}
     </Wrapper>
   );
 }
