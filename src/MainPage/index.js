@@ -21,7 +21,7 @@ const Left = styled.div`
   opacity: 0.8;
   font-weight: bold;
   background-color: #f8f8e7;
-  font-family: 'Courier Prime', monospace;
+  font-family: "Courier Prime", monospace;
 `;
 const Write = styled.div`
   font-size: 20px;
@@ -30,7 +30,7 @@ const Write = styled.div`
   // text-align: center;
   width: 80%;
   height: 100%;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 `;
 const Input = styled.input`
   border-radius: 5px;
@@ -63,8 +63,13 @@ const Block = styled.img`
   margin-left: 20px;
 `;
 
+const TutorialWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 function MainPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const states = location.state;
   console.log(states);
   const [images, setImages] = useState({
@@ -73,6 +78,9 @@ function MainPage() {
     select3: states.select3,
   });
 
+  const navigateToTutorial = () => {
+    navigate("/tutorial");
+  };
   return (
     <Wrapper>
       <Left>
@@ -83,6 +91,7 @@ function MainPage() {
       </Left>
       <Write>
         <h1>Welcome To Wally Gallery!</h1>
+        <TutorialWrapper onClick={navigateToTutorial}>tutorial</TutorialWrapper>
         <h6>Now let's create YOUR OWN Wally Page!</h6>
         <p>How to Make Your Own Wally Page:</p>
         <h6>1. You Already Chose Your Characters!</h6>
