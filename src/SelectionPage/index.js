@@ -12,7 +12,6 @@ import WHERE from "./WHERE.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col } from "react-bootstrap";
 
-
 const Wrapper = styled.div`
   display: flex;
   height: 100vh;
@@ -66,20 +65,14 @@ const Block = styled.img`
 `;
 function MainPage() {
   const navigate = useNavigate();
-  const locationn = useLocation();
-  function MOVE2(index){
-    console.log(images[index])
-    
-   
-    if (window.confirm('CONFIRM TO SELECT CHARACTER?')){
-        navigate( "/select-2",
-       {
-        state:       
-           {...locationn.state,
-            select1: images[index]}   
-       } )
-    }else{
-        alert("TASK ABORTED")
+  const location = useLocation();
+  function MOVE2(index) {
+    if (window.confirm("CONFIRM TO SELECT CHARACTER?")) {
+      navigate("/select-2", {
+        state: { ...location.state, select1: images[index] },
+      });
+    } else {
+      alert("TASK ABORTED");
     }
 }
   const [WallyIndex, setWallyIndex] = useState({
@@ -123,15 +116,17 @@ function MainPage() {
         </SliderButton>
 
         {mediaQueryList.matches &&
-          images.slice(WallyIndex.first, WallyIndex.last).map((image, index) => (
-            <Col md={3}>
-              <Block onClick={MOVE2(index)} src={image} />
-            </Col>
-          ))}
+          images
+            .slice(WallyIndex.first, WallyIndex.last)
+            .map((image, index) => (
+              <Col md={3}>
+                <Block onClick={() => MOVE2(index)} src={image} />
+              </Col>
+            ))}
         {!mediaQueryList.matches &&
-          images.slice(WallyIndex.first, 1).map((image) => (
+          images.slice(WallyIndex.first, 1).map((image, index) => (
             <Col md={3}>
-              <Block onClick={MOVE2} src={image} />
+              <Block onClick={() => MOVE2(index)} src={image} />
             </Col>
           ))}
 
@@ -139,21 +134,7 @@ function MainPage() {
           <span>&#8594;</span>
         </SliderButton>
       </SliderWrapper>
-      {/* 
-      <br></br>
-      <SliderWrapper>
-        <SliderButton onClick={() => nextPage("prev")}>
-          <span>&#8592;</span>
-        </SliderButton>
-        {
-            images.slice(WallyIndex.first, WallyIndex.last).map((image, index) => (<Block onClick={() => MOVE2(index)} src={image}/>))
-        }
-
-        <SliderButton onClick={() => nextPage("next")}>
-          <span>&#8594;</span>
-        </SliderButton>
-      </SliderWrapper> */}
-    </Wrapper>
+l3    </Wrapper>
   );
 }
 export default MainPage;

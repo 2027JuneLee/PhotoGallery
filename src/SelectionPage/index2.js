@@ -116,7 +116,7 @@ function MainPage() {
 
   return (
     <Wrapper>
-      <h2>SELECT YOUR CHARACTER: </h2>
+      <h2>SELECT YOUR RACCOON: </h2>
       <br></br>
       <SliderWrapper>
         <SliderButton onClick={() => nextPage("prev")}>
