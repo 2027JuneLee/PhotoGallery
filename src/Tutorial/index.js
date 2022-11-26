@@ -5,6 +5,8 @@ import { createRoot } from "react-dom/client";
 import { Stage, Layer, Image } from "react-konva";
 import useImage from "use-image";
 import "./index.css";
+import Ra from "./raccoon-1.jpg"
+import Ba from "./background-1.jpg"
 const Wrapper = styled.div`
   background-color: #fffacd;
   height: 100vh;
@@ -58,10 +60,25 @@ function Tutorial() {
   return (
     <Wrapper>
       <Title>Tutorial</Title>
+      <p>Drag 'n Drop The Sample Images!</p>
       <BodyWrapper>
         <ImageWrapper>
           <Image1
             src={Wally}
+            draggable="true"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          ></Image1>
+                    <Image1
+            src={Ra}
+            draggable="true"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          ></Image1>
+                    <Image1
+            src={Ba}
             draggable="true"
             onDragStart={(e) => {
               dragUrl.current = e.target.src;
