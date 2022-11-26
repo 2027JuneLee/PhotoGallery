@@ -84,6 +84,7 @@ function MainPage() {
       <Write>
         <h1>Welcome To Wally Gallery!</h1>
         <h6>Now let's create YOUR OWN Wally Page!</h6>
+        <button>CREATE WALLY PAGE</button>
         <p>How to Make Your Own Wally Page:</p>
         <h6>1. You Already Chose Your Characters!</h6>
         <h6>2. Click on The Button Above for Your Own Cartoon Page!</h6>
