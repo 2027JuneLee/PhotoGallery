@@ -31,6 +31,13 @@ const Write = styled.div`
   width: 80%;
   height: 100%;
   font-family: "Roboto", sans-serif;
+  background: repeating-linear-gradient(
+    75deg,
+    #ff0000,
+    #ff0000 10px,
+    #f5fffa 10px,
+    #f5fffa 20px
+  );
 `;
 const Input = styled.input`
   border-radius: 5px;
@@ -93,6 +100,7 @@ function MainPage() {
         <h1>Welcome To Wally Gallery!</h1>
         <TutorialWrapper onClick={navigateToTutorial}>tutorial</TutorialWrapper>
         <h6>Now let's create YOUR OWN Wally Page!</h6>
+        <button>CREATE WALLY PAGE</button>
         <p>How to Make Your Own Wally Page:</p>
         <h6>1. You Already Chose Your Characters!</h6>
         <h6>2. Click on The Button Above for Your Own Cartoon Page!</h6>
