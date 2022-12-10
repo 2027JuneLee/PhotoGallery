@@ -8,7 +8,7 @@ import SelectBackground from "./SelectionPage/index-3";
 import MainPage from "./MainPage/index";
 import Tutorial from "./Tutorial";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import Temp from "./Temp";
 function App() {
   return (
     <Router>
@@ -22,6 +22,7 @@ function App() {
           <Route path="/select-2" element={<SelectRacoon />} />
           <Route path="/select-3" element={<SelectBackground />} />
           <Route path="/tutorial" element={<Tutorial />} />
+          <Route path="/temp" element={<Temp />} />
         </Routes>
       </div>
     </Router>
