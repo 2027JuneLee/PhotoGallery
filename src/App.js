@@ -9,7 +9,7 @@ import MainPage from "./MainPage/index";
 import Tutorial from "./Tutorial";
 import CreatePage from "./CreatePage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import Temp from "./Temp";
 function App() {
   return (
     <Router>
@@ -24,6 +24,7 @@ function App() {
           <Route path="/select-3" element={<SelectBackground />} />
           <Route path="/tutorial" element={<Tutorial />} />
           <Route path="/create" element={<CreatePage />} />          
+          <Route path="/temp" element={<Temp />} />
         </Routes>
       </div>
     </Router>
