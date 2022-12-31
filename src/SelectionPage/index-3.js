@@ -109,7 +109,7 @@ function MOVE2(index){
 
   return (
     <Wrapper>
-      <h2>SELECT YOUR CHARACTER: </h2>
+      <h2>SELECT YOUR BACKGROUND: </h2>
       <br></br>
       <SliderWrapper>
         <SliderButton onClick={() => nextPage("prev")}>

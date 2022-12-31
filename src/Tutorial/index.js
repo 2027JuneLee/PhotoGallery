@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import Wally from "./Wally.png";
+import Ra from "./raccoon-1.jpg";
+import Ba from "./background-1.jpg";
 import { createRoot } from "react-dom/client";
 import { Stage, Layer, Image, Transformer } from "react-konva";
 import useImage from "use-image";
@@ -125,6 +127,20 @@ function Tutorial() {
         <ImageWrapper>
           <Image1
             src={Wally}
+            draggable="true"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          ></Image1>
+                    <Image1
+            src={Ra}
+            draggable="true"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          ></Image1>
+                    <Image1
+            src={Ba}
             draggable="true"
             onDragStart={(e) => {
               dragUrl.current = e.target.src;

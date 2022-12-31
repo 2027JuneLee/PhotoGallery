@@ -9,6 +9,8 @@ const Wrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
+  font-family: 'Suez One', serif;
+  background: url(https://i.ibb.co/BczT4V8/output-onlinepngtools-5.png)
 `;
 const Left = styled.div`
   font-size: 20px;
@@ -18,10 +20,9 @@ const Left = styled.div`
   text-align: center;
   width: 15%;
   height: 100vh;
-  opacity: 0.8;
+  opacity: 1;
   font-weight: bold;
   background-color: #f8f8e7;
-  font-family: "Courier Prime", monospace;
 `;
 const Write = styled.div`
   font-size: 20px;
@@ -30,14 +31,7 @@ const Write = styled.div`
   // text-align: center;
   width: 80%;
   height: 100%;
-  font-family: "Roboto", sans-serif;
-  background: repeating-linear-gradient(
-    75deg,
-    #ff0000,
-    #ff0000 10px,
-    #f5fffa 10px,
-    #f5fffa 20px
-  );
+  font-family: 'Suez One', serif;
 `;
 const Input = styled.input`
   border-radius: 5px;
@@ -88,10 +82,13 @@ function MainPage() {
   const navigateToTutorial = () => {
     navigate("/tutorial");
   };
+  const navigateToCreate = () => {
+    navigate("/create");
+  };
   return (
     <Wrapper>
       <Left>
-        YOUR CHOSEN WALLY/RACCOON/BG:
+        Your Chosen Images:
         <img src={images.select1}></img>
         <img src={images.select2}></img>
         <img src={images.select3}></img>
@@ -100,11 +97,11 @@ function MainPage() {
         <h1>Welcome To Wally Gallery!</h1>
         <TutorialWrapper onClick={navigateToTutorial}>tutorial</TutorialWrapper>
         <h6>Now let's create YOUR OWN Wally Page!</h6>
-        <button>CREATE WALLY PAGE</button>
-        <p>How to Make Your Own Wally Page:</p>
-        <h6>1. You Already Chose Your Characters!</h6>
-        <h6>2. Click on The Button Above for Your Own Cartoon Page!</h6>
-        <h6>3. Enjoy!</h6>
+        <button onClick={navigateToCreate}>CREATE WALLY PAGE</button>
+        <h4>How to Make Your Own Wally Page:</h4>
+        <p>1. You Already Chose Your Characters!</p>
+        <p>2. Click on The Button Above for Your Own Cartoon Page!</p>
+        <p>3. Enjoy!</p>
       </Write>
     </Wrapper>
   );
