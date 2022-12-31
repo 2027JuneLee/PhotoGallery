@@ -4,16 +4,17 @@ import Wally from "./Wally.png";
 import Ra from "./raccoon-1.jpg";
 import Ba from "./background-1.jpg";
 import { createRoot } from "react-dom/client";
-import { Stage, Layer, Image, Transformer } from "react-konva";
+import { Stage, Layer, Image, Transformer, Line, Text } from "react-konva";
 import useImage from "use-image";
+
 const Wrapper = styled.div`
   background-color: #fffacd;
   height: 100vh;
-  text-align: center;
+  /* text-align: center; */
   padding-top: 50px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 `;
 
 const BodyWrapper = styled.div`
@@ -23,6 +24,7 @@ const BodyWrapper = styled.div`
 `;
 const Title = styled.h1`
   /* margin-top: 50px; */
+  text-align: center;
   color: black;
 `;
 
@@ -40,15 +42,16 @@ const BoardWrapper = styled.div`
   height: 100%;
 `;
 
+const SelectWrapper = styled.select`
+  width: 100px;
+  margin-left: 100px;
+`;
+
 function Stickers({ shapeProps, isSelected, onSelect, onChange }) {
   const [image] = useImage(shapeProps.src);
   const shapeRef = useRef();
   const trRef = useRef();
-  // useLayoutEffect(() => {
-  //   if (image) {
-  //     shapeRef.current.cache();
-  //   }
-  // }, [shapeProps, image, isSelected]);
+
   const [size, setSize] = useState({ w: shapeProps.w, h: shapeProps.h });
 
   useEffect(() => {
@@ -106,9 +109,13 @@ function Stickers({ shapeProps, isSelected, onSelect, onChange }) {
     </React.Fragment>
   );
 }
+
 function Tutorial() {
   const [images, setImages] = useState([]);
   const [selectedId, selectShape] = useState(null);
+  const [tool, setTool] = React.useState("pen");
+  const [lines, setLines] = React.useState([]);
+  const isDrawing = React.useRef(false);
 
   const checkDeselect = (e) => {
     // deselect when clicked on empty area
@@ -116,13 +123,49 @@ function Tutorial() {
     if (clickedOnEmpty) {
       selectShape(null);
     }
+
+    isDrawing.current = true;
+    const pos = e.target.getStage().getPointerPosition();
+    setLines([...lines, { tool, points: [pos.x, pos.y] }]);
   };
+
+  const handleMouseUp = () => {
+    isDrawing.current = false;
+  };
+
+  const handleMouseMove = (e) => {
+    // no drawing - skipping
+    if (!isDrawing.current) {
+      return;
+    }
+    const stage = e.target.getStage();
+    const point = stage.getPointerPosition();
+    let lastLine = lines[lines.length - 1];
+    // add point
+    lastLine.points = lastLine.points.concat([point.x, point.y]);
+
+    // replace last
+    lines.splice(lines.length - 1, 1, lastLine);
+    setLines(lines.concat());
+  };
+
   const dragUrl = useRef();
   const stageRef = useRef();
 
   return (
     <Wrapper>
       <Title>Tutorial</Title>
+
+      <SelectWrapper
+        value={tool}
+        onChange={(e) => {
+          setTool(e.target.value);
+        }}
+      >
+        <option value="pen">Pen</option>
+        <option value="eraser">Eraser</option>
+      </SelectWrapper>
+
       <BodyWrapper>
         <ImageWrapper>
           <Image1
@@ -132,14 +175,14 @@ function Tutorial() {
               dragUrl.current = e.target.src;
             }}
           ></Image1>
-                    <Image1
+          <Image1
             src={Ra}
             draggable="true"
             onDragStart={(e) => {
               dragUrl.current = e.target.src;
             }}
           ></Image1>
-                    <Image1
+          <Image1
             src={Ba}
             draggable="true"
             onDragStart={(e) => {
@@ -172,7 +215,25 @@ function Tutorial() {
             ref={stageRef}
             onMouseDown={checkDeselect}
             onTouchStart={checkDeselect}
+            onMouseup={handleMouseUp}
+            onMousemove={handleMouseMove}
           >
+            <Layer>
+              {lines.map((line, i) => (
+                <Line
+                  key={i}
+                  points={line.points}
+                  stroke="#df4b26"
+                  strokeWidth={5}
+                  tension={0.5}
+                  lineCap="round"
+                  lineJoin="round"
+                  globalCompositeOperation={
+                    line.tool === "eraser" ? "destination-out" : "source-over"
+                  }
+                />
+              ))}
+            </Layer>
             <Layer>
               {images.map((image, i) => {
                 return (
