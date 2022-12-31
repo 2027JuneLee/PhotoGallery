@@ -150,8 +150,8 @@ function Tutorial() {
           onDragOver={(e) => e.preventDefault()}
         >
           <Stage
-            width={window.innerWidth}
-            height={window.innerHeight}
+            width={1200}
+            height={600}
             style={{ border: "1px solid #666600" }}
             ref={stageRef}
             onMouseDown={checkDeselect}
