@@ -2,10 +2,12 @@ import styled from "styled-components";
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import Wally from "./Wally.png";
 import Ra from "./raccoon-1.jpg";
+import Null from "./null.png"
 import Ba from "./background-1.jpg";
 import { createRoot } from "react-dom/client";
 import { Stage, Layer, Image, Transformer, Line, Text } from "react-konva";
 import useImage from "use-image";
+import TUTO from "./tuto.png"
 
 const Wrapper = styled.div`
   background-color: #fffacd;
@@ -16,6 +18,26 @@ const Wrapper = styled.div`
   flex-direction: column;
   /* align-items: center; */
 `;
+
+const INPUT = styled.input`
+  height: 25px;
+  width: 200px;
+  /*margin-left: 100px;*/
+`
+
+const P = styled.p`
+  margin-left: 100px;
+`
+
+const INPUT2 = styled.input`
+  height: 25px;
+  width: 100px;
+`
+const INPUT3 = styled.input`
+  height: 50px;
+  width: 300px;
+  font-size: 48x;
+`
 
 const BodyWrapper = styled.div`
   display: flex;
@@ -44,7 +66,7 @@ const BoardWrapper = styled.div`
 
 const SelectWrapper = styled.select`
   width: 100px;
-  margin-left: 100px;
+  /*margin-left: 100px;*/
 `;
 
 function Stickers({ shapeProps, isSelected, onSelect, onChange }) {
@@ -111,6 +133,19 @@ function Stickers({ shapeProps, isSelected, onSelect, onChange }) {
 }
 
 function Tutorial() {
+  const [color, setColor] = React.useState("#000000");  
+  const addColor = (event) => {
+    setColor(event.target.value);
+  };
+  const [RAA, setRAA] = React.useState("./null.png");  
+  const addRAA = (event) => {
+    setRAA(event.target.value);
+  };
+  const [thickness, setThickness] = React.useState("5");  
+  const addThickness = (event) => {
+    setThickness(event.target.value);
+  };
+
   const [images, setImages] = useState([]);
   const [selectedId, selectShape] = useState(null);
   const [tool, setTool] = React.useState("pen");
@@ -155,7 +190,9 @@ function Tutorial() {
   return (
     <Wrapper>
       <Title>Tutorial</Title>
+      <p>Drag the boring tutorial image to the whiteboard!</p>
 
+      <div>
       <SelectWrapper
         value={tool}
         onChange={(e) => {
@@ -165,6 +202,16 @@ function Tutorial() {
         <option value="pen">Pen</option>
         <option value="eraser">Eraser</option>
       </SelectWrapper>
+      <INPUT2 type="text" id="size" onChange={(addThickness)}></INPUT2>
+      <P>Tool PX</P>
+      </div>
+      <INPUT type="text" id="color" onChange={addColor}></INPUT>
+      <P>Color</P>
+      <INPUT type="text" id="color" onChange={addRAA}></INPUT>
+      <P>Custom Image URL</P>
+
+
+
 
       <BodyWrapper>
         <ImageWrapper>
@@ -175,7 +222,7 @@ function Tutorial() {
               dragUrl.current = e.target.src;
             }}
           ></Image1>
-          <Image1
+                    <Image1
             src={Ra}
             draggable="true"
             onDragStart={(e) => {
@@ -183,6 +230,21 @@ function Tutorial() {
             }}
           ></Image1>
           <Image1
+            src={RAA}
+            draggable="true"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          ></Image1>
+                    <Image1
+            src={TUTO}
+            draggable="true"
+            onDragStart={(e) => {
+              dragUrl.current = e.target.src;
+            }}
+          ></Image1>
+
+                    <Image1
             src={Ba}
             draggable="true"
             onDragStart={(e) => {
@@ -208,10 +270,12 @@ function Tutorial() {
           }}
           onDragOver={(e) => e.preventDefault()}
         >
+          <INPUT3 type="text" id="color"></INPUT3>
           <Stage
             width={1200}
+            
             height={600}
-            style={{ border: "1px solid #666600" }}
+            style={{ border: "1px solid #666600"}}
             ref={stageRef}
             onMouseDown={checkDeselect}
             onTouchStart={checkDeselect}
@@ -223,8 +287,8 @@ function Tutorial() {
                 <Line
                   key={i}
                   points={line.points}
-                  stroke="#df4b26"
-                  strokeWidth={5}
+                  stroke={color}
+                  strokeWidth={thickness}
                   tension={0.5}
                   lineCap="round"
                   lineJoin="round"

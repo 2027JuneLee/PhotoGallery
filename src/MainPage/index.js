@@ -5,6 +5,11 @@ import { Stage, Layer, Rect, Text } from "react-konva";
 import Waldowallyyyyyyyyyy from "./waldowallyyyyyyyyyy.jpeg";
 import { Row, Col } from "react-bootstrap";
 
+const BUTTON = styled.button`
+  height: 50px;
+  width: 100px;
+  align-items: center;
+`
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
@@ -89,15 +94,15 @@ function MainPage() {
     <Wrapper>
       <Left>
         Your Chosen Images:
-        <img src={images.select1}></img>
+        <img height="200px" width="100px" src={images.select1}></img>
         <img src={images.select2}></img>
         <img src={images.select3}></img>
       </Left>
       <Write>
         <h1>Welcome To Wally Gallery!</h1>
-        <TutorialWrapper onClick={navigateToTutorial}>tutorial</TutorialWrapper>
+        <TutorialWrapper onClick={navigateToTutorial}>TRY THE TUTORIAL!</TutorialWrapper>
         <h6>Now let's create YOUR OWN Wally Page!</h6>
-        <button onClick={navigateToCreate}>CREATE WALLY PAGE</button>
+        <BUTTON onClick={navigateToCreate}>CREATE WALLY PAGE</BUTTON>
         <h4>How to Make Your Own Wally Page:</h4>
         <p>1. You Already Chose Your Characters!</p>
         <p>2. Click on The Button Above for Your Own Cartoon Page!</p>
